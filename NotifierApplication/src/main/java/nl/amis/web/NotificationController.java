@@ -1,13 +1,12 @@
 package nl.amis.web;
 
 import nl.amis.data.jpa.domain.Notification;
-import nl.amis.data.jpa.domain.Subscription;
 import nl.amis.data.jpa.service.NotificationRepository;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+@RestController
 public class NotificationController {
 
 	private final NotificationRepository notificationRepository;
@@ -16,7 +15,7 @@ public class NotificationController {
 		this.notificationRepository = notificationRepository;
 	}
 
-	@GetMapping("/notifications")
+	@GetMapping("/allnotifications")
 	Iterable<Notification> all() {
 		return notificationRepository.findAll();
 	}
