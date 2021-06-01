@@ -30,7 +30,7 @@ public class AuthenticationService {
         return certInfo.getTags();
     }
 
-    public CertificateKeyVault getCertificate(RequestIdentifier requestIdentifier) {
+    private CertificateKeyVault getCertificate(RequestIdentifier requestIdentifier) {
         String thumbprint = requestIdentifier.thumbPrint;
         String token = requestIdentifier.token;
         String apk = requestIdentifier.appKey;
@@ -53,7 +53,7 @@ public class AuthenticationService {
         }
     }
 
-    public String checkTokenAndDecrypt(String token) {
+    private String checkTokenAndDecrypt(String token) {
         CheckToken checkToken = new CheckToken();
         checkToken.setToken(token);
 
@@ -63,7 +63,7 @@ public class AuthenticationService {
 
         try {
             checkResponse = (CheckTokenResponse) tokenWebServiceTemplate
-                    .marshalSendAndReceive(checkToken, new SoapActionCallback("http://www.aplaza.nl/token/CheckToken"));
+                    .marshalSendAndReceive(checkToken, new SoapActionCallback("http://www.amis.nl/token/CheckToken"));
         } catch (Exception e) {
             telemetryClient.trackException(e, Collections.singletonMap("Token", token), null);
             success = false;
@@ -86,7 +86,7 @@ public class AuthenticationService {
 
         try {
             decryptResponse = (DecryptTokenResponse) tokenWebServiceTemplate
-                    .marshalSendAndReceive(decryptToken, new SoapActionCallback("http://www.aplaza.nl/token/DecryptToken"));
+                    .marshalSendAndReceive(decryptToken, new SoapActionCallback("http://www.amis.nl/token/DecryptToken"));
         } catch (Exception e) {
             telemetryClient.trackException(e, Collections.singletonMap("Token", token), null);
             success2 = false;

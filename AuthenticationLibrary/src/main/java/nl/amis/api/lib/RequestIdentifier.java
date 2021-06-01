@@ -50,21 +50,21 @@ public class RequestIdentifier {
      */
     private static void validate(MultiValueMap<String, String> queryParameters) {
         String oid = getValue(queryParameters, OID);
-        Assert.notNull(oid, "APL-422 Geen eigenaarid (oid) meegegeven in aanroep");
+        Assert.notNull(oid, "422 Geen eigenaarid (oid) meegegeven in aanroep");
 
         String goid = getValue(queryParameters, GOID);
-        Assert.notNull(goid, "APL-422 Geen objectId (goid) meegegeven in aanroep");
+        Assert.notNull(goid, "422 Geen objectId (goid) meegegeven in aanroep");
 
         String token = getValue(queryParameters, TKN);
         if (token == null) {
             String thumbPrint = getValue(queryParameters, THUMBPRINT);
             if (thumbPrint == null) {
-                throw new IllegalArgumentException("APL-422 Geen token (tkn) of certificaat meegegeven in aanroep");
+                throw new IllegalArgumentException("422 Geen token (tkn) of certificaat meegegeven in aanroep");
             }
         }
 
         String apk = getValue(queryParameters, APK);
-        Assert.notNull(apk, "APL-422 Geen applicationKey (apk) meegegeven in aanroep");
+        Assert.notNull(apk, "422 Geen applicationKey (apk) meegegeven in aanroep");
     }
 
     private static String createQueryString(String ownerId, String objectId) {
