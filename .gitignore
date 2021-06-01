@@ -1,2 +1,7 @@
 .idea
+.classpath
+.factorypath
+.project
+/*/.settings/
 /AuthenticationLibrary/target
+/NotifierApplication/target
